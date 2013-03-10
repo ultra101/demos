@@ -1,7 +1,10 @@
 package operadriver;
 
 import com.opera.core.systems.OperaDriver;
+import com.opera.core.systems.OperaProfile;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -20,12 +23,16 @@ public class OperaDriverDemo {
 
     @BeforeMethod
     public void setUp(){
-        driver=new OperaDriver();
+        OperaProfile profile = new OperaProfile();
+        profile.preferences().set("Geolocation","Enable geolocation", false);
+        driver=new OperaDriver(profile);
         driver.get("http://www.dir.bg");
     }
 
     @Test
     public void testSample(){
+        WebElement link = driver.findElement(By.linkText("http://dir.bg"));
+        link.click();
         Assert.assertEquals(driver.getTitle(),"Dir.bg - Българският Интернет портал!");
     }
 
