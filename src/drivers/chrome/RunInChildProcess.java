@@ -1,4 +1,4 @@
-package chromedriver;
+package drivers.chrome;
 
 /**
  * Created with IntelliJ IDEA.

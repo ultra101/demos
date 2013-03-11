@@ -1,4 +1,4 @@
-package operadriver;
+package drivers.opera;
 
 import com.opera.core.systems.OperaDriver;
 import com.opera.core.systems.OperaProfile;

@@ -1,4 +1,4 @@
-package ffprofile;
+package drivers.ffprofile;
 
 
 import org.openqa.selenium.WebDriver;

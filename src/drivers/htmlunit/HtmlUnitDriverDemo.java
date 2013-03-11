@@ -1,4 +1,4 @@
-package htmlunitdriver;
+package drivers.htmlunit;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import org.openqa.selenium.By;

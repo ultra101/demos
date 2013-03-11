@@ -1,4 +1,4 @@
-package iedriver;
+package drivers.ie;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
