@@ -10,9 +10,9 @@ public class NullValueExceptionHandler extends TestFailedException {
     private static final long serialVersionUID = 1L;
     private String nullValue;
 
-    public NullValueExceptionHandler(LoggingSelenium selenium, String nullValue){
+    public NullValueExceptionHandler(String nullValue){ //LoggingSelenium selenium,
 
-        super( selenium, nullValue, "nullValueFoundException" );
+        super(nullValue, "nullValueFoundException" );            //selenium,
         this.nullValue = nullValue;
     }
 

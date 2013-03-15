@@ -1,5 +1,9 @@
 package drivers.chrome;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
+import org.testng.annotations.BeforeClass;
+
 /**
  * Created with IntelliJ IDEA.
  * User: valentin
@@ -8,5 +12,13 @@ package drivers.chrome;
  * To change this template use File | Settings | File Templates.
  */
 public class RunInChildProcess {
+
+    private static ChromeDriverService service;
+    private WebDriver driver;
+
+    @BeforeClass
+    public static void createAndStartService(){
+        //service = new ChromeDriverService.Builder().usi
+    }
 
 }

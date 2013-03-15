@@ -8,12 +8,12 @@ public class PropertyReader {
 
     private Properties properties;
     private String fileName;
-    LoggingSelenium selenium;
+//    LoggingSelenium selenium;
 
-    public PropertyReader(String fileName,LoggingSelenium selenium){
+    public PropertyReader(String fileName){ //LoggingSelenium selenium
         this.fileName = fileName;
         this.properties = new Properties();
-        this.selenium=selenium;
+        //this.selenium=selenium;
         init();
     }
 
@@ -28,7 +28,8 @@ public class PropertyReader {
     public String get(String key) throws NullValueExceptionHandler{
 
         if(properties.getProperty(key)==null)
-            throw new NullValueExceptionHandler(selenium, key+"|You are reading invalid property from the properties files.Please check the passed spelling argument / check the availability for argument in messages properties files");
+            throw new NullValueExceptionHandler(key+"|You are reading invalid property from the properties files." +       //selenium,
+                    "Please check the passed spelling argument / check the availability for argument in messages properties files");
         else
             return properties.getProperty(key);
     }

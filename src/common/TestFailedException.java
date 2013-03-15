@@ -12,35 +12,35 @@ public class TestFailedException extends Exception {
     private String url;
     private String message;
     private String exceptionType;
-    Reporting reporting;
+    //Reporting reporting;
 
 
     //	used for known exceptions with specified message
-    public TestFailedException(LoggingSelenium selenium ,String message, String exceptionType){
+    public TestFailedException(String message, String exceptionType){ //LoggingSelenium selenium ,
 
-        super(message + " | url: '" + getLocation(selenium) + "'");
+        super(message + " | url: '" + "'");                      //getLocation(selenium) +
         this.message=message;
         this.exceptionType=exceptionType;
         //reporting=new Reporting(selenium);
 
-        url = getLocation(selenium);
+        //url = getLocation(selenium);
 
         //	if exception is thrown manually then LoggingSelenium doesn't log error automatically
         //selenium.logAssertion(exceptionType, message + " | url:" + url, createStackTrace( this ));
         //selenium.logAssertion(exceptionType, message + " | url:" + url, toString());
         //Reporting.LOG("Error was:"+message);
         //Reporting.LOG("Expected:"+Reporting.getErrorMessage());
-        Reporting.reportlog(exceptionType,message);
-        selenium.logAssertion(exceptionType, message, toString());
+        //Reporting.reportlog(exceptionType,message);
+        //selenium.logAssertion(exceptionType, message, toString());
 
     }
 
 
     //	used for unknown exceptions that are catched from script
-    public TestFailedException(LoggingSelenium selenium ,Exception exception){
+    public TestFailedException(Exception exception){                                      //LoggingSelenium selenium ,
 
-        super(exception.getMessage() + " | url: '" + getLocation(selenium) + "'" + createStackTrace(exception));
-        url = getLocation(selenium);
+        super(exception.getMessage() + " | url: '" + "'" + createStackTrace(exception));  //getLocation(selenium) +
+        //url = getLocation(selenium);
     }
 
     /**
@@ -53,15 +53,15 @@ public class TestFailedException extends Exception {
 
     /**
      * Gets the location of the error while running
-     * @param selenium
+     * //@param selenium
      * @return location
      */
-    private static String getLocation( LoggingSelenium selenium ){
+    private static String getLocation(  ){                       //LoggingSelenium selenium
 
         String location = "unknown";
 
         try{
-            location = selenium.getLocation();
+            //location = selenium.getLocation();
         } catch (Exception e) {
             location = "error in selenium.getLocation()";
         }
