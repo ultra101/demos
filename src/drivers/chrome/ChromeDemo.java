@@ -55,6 +55,7 @@ public class ChromeDemo {
 
     @Test
     public void testExamples(){
+        driver.manage().window().maximize();
         WebElement loginButton=driver.findElement(By.xpath("//input[@type='submit']"));
         Assert.assertEquals("Login",loginButton.getAttribute("value"));
     }
