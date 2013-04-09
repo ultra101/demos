@@ -2,23 +2,20 @@ package handling.iframe;
 
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-/**
- * Created with IntelliJ IDEA.
- * User: valentin
- * Date: 13-3-26
- * Time: 0:37
- * To change this template use File | Settings | File Templates.
- */
+import java.util.Random;
+
 public class IFrameDemo{
 
     WebDriver driver;
@@ -35,46 +32,46 @@ public class IFrameDemo{
         driver.get(url);
     }
 
+
     @Test
     public void iframeDemo() throws InterruptedException {
         driver.findElement(By.xpath("//input[@name='username']")).sendKeys("vganchev");
         driver.findElement(By.xpath("//input[@name='password']")).sendKeys("vganchev1");
         driver.findElement(By.xpath("//input[@value='Login']")).click();
 
-        //driver.findElement(By.cssSelector("a.topmenu[href='/loggedin/eMarketing/index.php']")).click();
-
         Actions builder = new Actions(driver);
+
+        //Wait for eMarketing menu to be available
         WebElement eMarketingMenu = (new WebDriverWait(driver, 10))
                 .until(ExpectedConditions.presenceOfElementLocated
                         (By.cssSelector("a.topmenu[href='/loggedin/eMarketing/index.php']")));
         builder.moveToElement(eMarketingMenu).build().perform();
-        //Thread.sleep(5000);
 
         //Waiting for an element's visibility
         WebElement createMailingListMenu = (new WebDriverWait(driver, 10))
                 .until(ExpectedConditions.presenceOfElementLocated
                         (By.cssSelector("a[href*='eMarketing/createlist']")));
-        builder.moveToElement(createMailingListMenu).build().perform();
+
         createMailingListMenu.click();
 
-        (new WebDriverWait(driver, 10))
-                .until(ExpectedConditions.presenceOfElementLocated
-                        (By.cssSelector("iframe#innerframe1"))).click();
-
-        /*try{
-            WebElement createMailListIFrame = (new WebDriverWait(driver,10)).until(new ExpectedCondition<WebElement>() {
-                @Override
-                public WebElement apply(WebDriver driver) {
-                    return driver.findElement(By.cssSelector("iframe#innerframe1"));
-                }
-            });
-            Assert.assertTrue(createMailListIFrame.isDisplayed());
-        }catch (NoSuchElementException e){
-            System.out.println("Element not found!!");
+        //Wait for "Create Mailing List" iframe to be visible
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        try{
+            wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("innerframe1"));
+        }catch(NoSuchElementException e){
             e.printStackTrace();
-        }*/
-        Thread.sleep(5000);
+        }
+
+        //Generate random name and type it for the mailing list name
+        Double mailListName= new Random().nextDouble();
+        driver.findElement(By.cssSelector("input.shadow")).sendKeys(mailListName.toString());
+        //Click on Submit button
         driver.findElement(By.cssSelector("button[type='submit']")).click();
+        WebElement editListDetailsListDetailsNameAndStatus = (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.presenceOfElementLocated
+                        (By.cssSelector("input[name=name]")));
+        //Check mailing list name
+        Assert.assertEquals(mailListName.toString(),editListDetailsListDetailsNameAndStatus.getAttribute("value"));
     }
 
     @AfterMethod
