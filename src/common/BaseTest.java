@@ -5,13 +5,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
-public class BaseTest {
+public abstract class BaseTest {
 
-    WebDriver driver;
+    //WebDriver driver;
 
-    public boolean isElementPresent(By by) {
+    public boolean isElementPresent(WebDriver driver,By by, String searchTerm) {
         try {
-            driver.findElement(by);
+            driver.findElement(by).sendKeys(searchTerm);
             return true;
         } catch (NoSuchElementException e) {
             return false;
