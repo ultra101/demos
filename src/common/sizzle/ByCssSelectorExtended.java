@@ -1,11 +1,5 @@
 package common.sizzle;
 
-import org.openqa.selenium.By.ByCssSelector;
-import org.openqa.selenium.*;
-import org.openqa.selenium.internal.FindsByCssSelector;
-
-import java.util.List;
-
 /**
  * Created with IntelliJ IDEA.
  * User: valentin
@@ -14,7 +8,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 
-public class ByCssSelectorExtended extends ByCssSelector {
+/*public class ByCssSelectorExtended extends ByCssSelector {
     private String ownSelector;
     public ByCssSelectorExtended(String selector) {
         super(selector);
@@ -69,4 +63,4 @@ public class ByCssSelectorExtended extends ByCssSelector {
                 + "newScript.src = 'https://raw.github.com/jquery/sizzle/master/sizzle.js';"
                 + "headID.appendChild(newScript);");
     }
-}
+} */

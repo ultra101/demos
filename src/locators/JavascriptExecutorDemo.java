@@ -32,6 +32,7 @@ public class JavascriptExecutorDemo {
     @Test
     public void testJavascriptCalls(){
         driver.get("http://www.google.bg");
+        driver.manage().window().maximize();
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
         /*
@@ -43,7 +44,7 @@ public class JavascriptExecutorDemo {
         long links = (Long) js.executeScript("var links = document.getElementsByTagName\n" +
                 "('A'); return links.length");
         System.out.println(links);
-        Assert.assertEquals(26,links);
+        Assert.assertEquals(25,links);
     }
 
     @AfterMethod
