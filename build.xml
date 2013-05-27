@@ -1,0 +1,48 @@
+<project name="WebDriver Demos" default="start-grid2-hub" basedir=".">
+    <property file="config/run.properties"/>
+
+    <property name="grid2.server" value="${selenium.server.location}/${selenium.server.version}"/>
+    <!--<property name="lib.dir" value="lib"/>-->
+    <property name="log.dir" value="log"/>
+    <!--<property name="classes.dir" value="bin" />-->
+    <!--<property name="src.dir" value="src" />-->
+
+    <target name="start-grid2-hub">
+        <echo>Starting Grid2 Hub ...</echo>
+        <java jar="${grid2.server}" spawn="true" fork="true">
+            <arg line="-host ${grid2.host}"/>
+            <arg line="-port ${grid2.port}"/>
+            <arg line="-role hub"/>
+
+        </java>
+    </target>
+
+    <target name="start-grid2-node" depends="start-grid2-hub">
+        <echo>Starting Grid2 Node ...</echo>
+        <java jar="${grid2.server}" spawn="true" fork="true">
+            <arg line="-host ${grid2.host}"/>
+            <arg line="-port 5555"/>
+            <arg line="-role webdriver"/>
+            <arg line="-hub http://${grid2.host}:${grid2.port}/grid/register"/>
+            <arg line="-Dwebdriver.chrome.driver=${webdriver.chrome.driver}"/>
+            <arg line="-Dwebdriver.ie.driver=${webdriver.ie.driver}"/>
+            <arg line="-nodeTimeout 120"/>
+                                            <!--the timeout in seconds before the hub
+                                            automatically ends a test that hasn't had any activity in the
+                                            last X seconds. The browser will be released for another test to
+                                            use. This typically takes care of the client crashes.-->
+            <arg line="-maxSession 11"/>
+                                            <!--
+                                            (node) max number of tests that can run at the same time on the
+                                            node, independently of the browser used.
+                                            -->
+            <!--<arg line="-unregisterIfStillDownAfter 60000"/>-->
+        </java>
+    </target>
+
+    <target name="stop-grid2-hub">
+        <echo>Stopping Grid2 hub ...</echo>
+        <get taskname="grid2-shutdown" dest="${log.dir}/grid2/ShutdownGrid2Result.txt" ignoreerrors="true"
+             src="http://${grid2.host}:${grid2.port}/lifecycle-manager?action=shutdown"/>
+    </target>
+</project>
