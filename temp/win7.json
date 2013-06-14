@@ -1,0 +1,47 @@
+{
+    "capabilities":
+        [
+           {
+            "browserName": "firefox",
+            "version": "21",
+            "firefox_binary": "C:/Program Files (x86)/Mozilla Firefox/firefox.exe",
+            "platform": "WINDOWS",
+            "maxInstances": 3,
+            "webdriver_accept_untrusted_certs": true,
+            "seleniumProtocol": "WebDriver"
+        }, {
+            "browserName": "chrome",
+            "platform": "WINDOWS",
+            "start-maximized": true,
+            "chrome.binary": "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
+            "maxInstances": 3,
+            "seleniumProtocol": "WebDriver"
+        }, {
+            "browserName": "iexplorer",
+            "version": "9",
+            "ignoreZoomSetting": true,
+            "platform": "WINDOWS",
+            "maxInstances": 3,
+            "seleniumProtocol": "WebDriver"
+        }, {
+            "browserName": "opera",
+            "opera.binary": "C:/Program Files (x86)/Opera/opera.exe",
+            "platform": "WINDOWS",
+            "maxInstances": 3,
+            "seleniumProtocol": "WebDriver"
+        }, {
+            "browserName": "safari",
+            "platform": "WINDOWS",
+            "maxInstances": 3,
+            "seleniumProtocol": "WebDriver"
+        }
+
+        ],
+    "configuration":
+    {
+        "maxSession": 6,
+        "register": true,
+        "registerCycle": 5000,
+        "nodeTimeout": 120
+    }
+}

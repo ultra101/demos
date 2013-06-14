@@ -17,6 +17,8 @@
         </java>
     </target>
 
+
+
     <target name="start-grid2-node" depends="start-grid2-hub">
         <echo>Starting Grid2 Node ...</echo>
         <java jar="${grid2.server}" spawn="true" fork="true">
