@@ -3,10 +3,7 @@ package drivers.phantomjs;
 import common.NullValueExceptionHandler;
 import common.PropertyReader;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -77,7 +74,19 @@ public class PhantomJSDemo {
         }catch (Exception e){
             e.printStackTrace();
         }
+        /*for (int i = 0; i < 20000; i++) {
+            System.out.println("iteration: " + i);
+            hasLink(driver, "link");
+        }*/
     }
+
+    /*public static boolean hasLink(WebDriver driver, String linkText) {
+        try {
+            return driver.findElement(By.linkText(linkText)).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }*/
 
     @AfterMethod
     public void tearDown(){
